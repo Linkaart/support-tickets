@@ -17,13 +17,13 @@ st.write(
     """
 )
 
-# Create a random Pandas dataframe with existing tickets.
+#  cree aleatoirement Pandas dataframe avec des tickets existant pour tester.
 if "df" not in st.session_state:
 
     # Set seed for reproducibility.
     np.random.seed(42)
 
-    # Make up some fake issue descriptions.
+    # cree des description de test .
     issue_descriptions = [
         "Network connectivity issues in the office",
         "Software application crashing on startup",
@@ -47,7 +47,7 @@ if "df" not in st.session_state:
         "Collaboration tool not sending notifications",
     ]
 
-    # Generate the dataframe with 100 rows/tickets.
+    # genere la data de 100 tickets pour tester les fonctions.
     data = {
         "ID": [f"TICKET-{i}" for i in range(1100, 1000, -1)],
         "Issue": np.random.choice(issue_descriptions, size=100),
@@ -60,13 +60,13 @@ if "df" not in st.session_state:
     }
     df = pd.DataFrame(data)
 
-    # Save the dataframe in session state (a dictionary-like object that persists across
+    # sauvegarde de la data pour la Session actuel (a dictionary-like object that persists across
     # page runs). This ensures our data is persisted when the app updates.
     st.session_state.df = df
 
 
-# Show a section to add a new ticket.
-st.header("Add a ticket")
+# vue section ajouter tickets.
+st.header("ajouter un ticket")
 
 # We're adding tickets via an `st.form` and some input widgets. If widgets are used
 # in a form, the app will only rerun once the submit button is pressed.
@@ -76,7 +76,7 @@ with st.form("add_ticket_form"):
     submitted = st.form_submit_button("Submit")
 
 if submitted:
-    # Make a dataframe for the new ticket and append it to the dataframe in session
+    # cree la data d'un nouveau ticket and append it to the dataframe in session
     # state.
     recent_ticket_number = int(max(st.session_state.df.ID).split("-")[1])
     today = datetime.datetime.now().strftime("%m-%d-%Y")
